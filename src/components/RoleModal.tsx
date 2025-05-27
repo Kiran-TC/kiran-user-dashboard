@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useStore } from '../store/useStore';
 
 interface RoleModalProps {
-  userId: string;
+  userId: number;
   currentRole: string;
   onClose: () => void;
 }
