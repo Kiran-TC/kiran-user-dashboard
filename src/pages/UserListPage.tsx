@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import usersData from '../data/users.json';
 import { useStore } from '../store/useStore';
+import '../responsive.css'; 
+
 
 const USERS_PER_PAGE = 5;
 
@@ -12,7 +14,7 @@ function UserListPage() {
   const [visibleUsersCount, setVisibleUsersCount] = useState(USERS_PER_PAGE);
 
   useEffect(() => {
-    setUsers(usersData); // load JSON once on mount
+    setUsers(usersData);
   }, [setUsers]);
 
   const filteredUsers = users.filter(user =>
@@ -48,29 +50,31 @@ function UserListPage() {
           setSearch(e.target.value);
           setVisibleUsersCount(USERS_PER_PAGE);
         }}
-        style={{ marginBottom: '10px', padding: '5px' }}
+        style={{ marginBottom: '10px', padding: '5px', width: '100%' }}
       />
 
-      <table border={1} cellPadding={10} cellSpacing={0} style={{ width: '100%', marginTop: '10px' }}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {visibleUsers.map(user => (
-            <tr key={user.id}>
-              <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
-              <td>{user.email}</td>
-              <td>{user.role}</td>
-              <td>{user.status}</td>
+      <div style={{ overflowX: 'auto' }}>
+        <table border={1} cellPadding={10} cellSpacing={0} style={{ width: '100%', minWidth: '600px' }}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {visibleUsers.map(user => (
+              <tr key={user.id}>
+                <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td>{user.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {visibleUsersCount < filteredUsers.length && (
         <button
@@ -82,7 +86,9 @@ function UserListPage() {
             background: '#007bff',
             color: 'white',
             border: 'none',
-            borderRadius: '5px'
+            borderRadius: '5px',
+            width: '100%',
+            fontSize: '16px'
           }}
         >
           Load More

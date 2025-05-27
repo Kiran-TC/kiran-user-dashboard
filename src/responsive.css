@@ -1,0 +1,28 @@
+/* src/responsive.css */
+
+@media (max-width: 768px) {
+  .role-modal {
+    padding: 16px;
+    font-size: 14px;
+    width: 90%;
+  }
+
+  .role-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .role-buttons button {
+    width: 100%;
+  }
+
+  .role-add-container {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .role-add-container input,
+  .role-add-container button {
+    width: 100%;
+  }
+}
