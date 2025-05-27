@@ -1,39 +1,50 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useStore } from '../store/useStore';
 import { useState } from 'react';
 import RoleModal from '../components/RoleModal';
-import { useStore } from '../store/useStore';
 
 function UserDetailPage() {
   const { id } = useParams();
   const userId = Number(id);
-  const user = useStore(state => state.users.find(u => u.id === userId));
-  const updateUserRoles = useStore(state => state.updateUserRoles);
+  const navigate = useNavigate();
+
+  const users = useStore(state => state.users);
+  const user = users.find(u => u.id === userId);
 
   const [showModal, setShowModal] = useState(false);
 
-  if (!user) return <p>User not found.</p>;
-
-  const handleSaveRoles = (updatedRoles: string[]) => {
-    updateUserRoles(user.id, updatedRoles);
-    setShowModal(false);
-  };
+  if (!user) {
+    return (
+      <div style={{ padding: '20px' }}>
+        <h2>User not found</h2>
+        <button onClick={() => navigate(-1)}>Go Back</button>
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>User Detail: {user.name}</h2>
+      <h2>User Detail</h2>
+
+      <p><strong>Name:</strong> {user.name}</p>
       <p><strong>Email:</strong> {user.email}</p>
+      <p>
+        <strong>Role:</strong> {user.role}{' '}
+        <button onClick={() => setShowModal(true)} style={{ marginLeft: '10px' }}>
+          Edit Role
+        </button>
+      </p>
       <p><strong>Status:</strong> {user.status}</p>
 
-      <div style={{ marginTop: '10px' }}>
-        <p><strong>Role:</strong> {user.role}</p>
-        <button onClick={() => setShowModal(true)}>Manage Roles</button>
-      </div>
+      <button onClick={() => navigate(-1)} style={{ marginTop: '20px' }}>
+        Go Back
+      </button>
 
       {showModal && (
         <RoleModal
-          roles={[user.role]} // current role as array
+          userId={user.id}
+          currentRole={user.role}
           onClose={() => setShowModal(false)}
-          onSave={handleSaveRoles}
         />
       )}
     </div>

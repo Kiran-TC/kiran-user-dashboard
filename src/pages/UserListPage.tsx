@@ -15,27 +15,22 @@ function UserListPage() {
     setUsers(usersData); // load JSON once on mount
   }, [setUsers]);
 
-  // Filter users based on search term
   const filteredUsers = users.filter(user =>
     user.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Users to display = slice of filtered users up to visibleUsersCount
   const visibleUsers = filteredUsers.slice(0, visibleUsersCount);
 
-  // Load more users on button click
   const loadMoreUsers = () => {
     setVisibleUsersCount(prev => Math.min(prev + USERS_PER_PAGE, filteredUsers.length));
   };
 
-  // Optional: auto load more on scroll near bottom
   const handleScroll = () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
       loadMoreUsers();
     }
   };
 
-  // Attach scroll listener
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -51,7 +46,7 @@ function UserListPage() {
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
-          setVisibleUsersCount(USERS_PER_PAGE); // reset visible users count on search
+          setVisibleUsersCount(USERS_PER_PAGE);
         }}
         style={{ marginBottom: '10px', padding: '5px' }}
       />
@@ -77,7 +72,6 @@ function UserListPage() {
         </tbody>
       </table>
 
-      {/* Load More button - show only if more users left */}
       {visibleUsersCount < filteredUsers.length && (
         <button
           onClick={loadMoreUsers}

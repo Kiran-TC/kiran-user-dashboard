@@ -5,7 +5,6 @@ interface RoleModalProps {
   userId: number;
   currentRole: string;
   onClose: () => void;
-  roles: string[];
 }
 
 const RoleModal: React.FC<RoleModalProps> = ({ userId, currentRole, onClose }) => {
@@ -72,7 +71,7 @@ const RoleModal: React.FC<RoleModalProps> = ({ userId, currentRole, onClose }) =
                 <button
                   onClick={() => handleDeleteRole(role)}
                   style={{ color: 'red', marginLeft: '10px' }}
-                  disabled={role === 'Viewer'} // prevent deleting fallback role
+                  disabled={role === 'Viewer'}
                 >
                   Delete
                 </button>
