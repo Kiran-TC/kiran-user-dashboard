@@ -5,6 +5,7 @@ interface RoleModalProps {
   userId: number;
   currentRole: string;
   onClose: () => void;
+  roles: string[];
 }
 
 const RoleModal: React.FC<RoleModalProps> = ({ userId, currentRole, onClose }) => {

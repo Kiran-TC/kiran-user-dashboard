@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import usersData from '../data/users.json';
 import { useStore } from '../store/useStore';
@@ -10,48 +10,39 @@ function UserListPage() {
   const setUsers = useStore(state => state.setUsers);
   const [search, setSearch] = useState('');
   const [visibleUsersCount, setVisibleUsersCount] = useState(USERS_PER_PAGE);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setUsers(usersData);
+    setUsers(usersData); // load JSON once on mount
   }, [setUsers]);
 
+  // Filter users based on search term
   const filteredUsers = users.filter(user =>
     user.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Slice only the visible users count
+  // Users to display = slice of filtered users up to visibleUsersCount
   const visibleUsers = filteredUsers.slice(0, visibleUsersCount);
 
-  // Load next 5 users ONLY if not reached end
+  // Load more users on button click
   const loadMoreUsers = () => {
-    setVisibleUsersCount(prev =>
-      Math.min(prev + USERS_PER_PAGE, filteredUsers.length)
-    );
+    setVisibleUsersCount(prev => Math.min(prev + USERS_PER_PAGE, filteredUsers.length));
   };
 
-  // Scroll handler to load more on near bottom scroll
+  // Optional: auto load more on scroll near bottom
   const handleScroll = () => {
-    if (!containerRef.current) return;
-
-    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-
-    // Trigger when user scrolls within 100px of bottom
-    if (scrollHeight - scrollTop - clientHeight < 100) {
-      // Load more ONLY if there are more users to load
-      if (visibleUsersCount < filteredUsers.length) {
-        loadMoreUsers();
-      }
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+      loadMoreUsers();
     }
   };
 
+  // Attach scroll listener
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [filteredUsers, visibleUsersCount]);
+
   return (
-    <div
-      className="container"
-      style={{ padding: '20px', height: '600px', overflowY: 'auto', border: '1px solid #ccc' }}
-      ref={containerRef}
-      onScroll={handleScroll}
-    >
+    <div className="container" style={{ padding: '20px' }}>
       <h2>User List</h2>
 
       <input
@@ -60,7 +51,7 @@ function UserListPage() {
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
-          setVisibleUsersCount(USERS_PER_PAGE); // Reset to first page on search
+          setVisibleUsersCount(USERS_PER_PAGE); // reset visible users count on search
         }}
         style={{ marginBottom: '10px', padding: '5px' }}
       />
@@ -86,11 +77,19 @@ function UserListPage() {
         </tbody>
       </table>
 
-      {/* Optional Load More Button */}
+      {/* Load More button - show only if more users left */}
       {visibleUsersCount < filteredUsers.length && (
         <button
           onClick={loadMoreUsers}
-          style={{ marginTop: '15px', padding: '10px 15px', cursor: 'pointer' }}
+          style={{
+            marginTop: '15px',
+            padding: '10px 20px',
+            cursor: 'pointer',
+            background: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px'
+          }}
         >
           Load More
         </button>
