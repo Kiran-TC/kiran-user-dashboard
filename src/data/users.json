@@ -1,0 +1,164 @@
+[
+    {
+      "id": 1,
+      "name": "Kiran TC",
+      "email": "kiran@gmail.com",
+      "role": "Admin",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "name": "naruto",
+      "email": "bob@example.com",
+      "role": "Editor",
+      "status": "Inactive"
+    },
+    {
+      "id": 3,
+      "name": "Bruce Lee",
+      "email": "super@example.com",
+      "role": "Viewer",
+      "status": "Active"
+    },
+    {
+      "id": 4,
+      "name": "Bharath varma",
+      "email": "varma@example.com",
+      "role": "Admin",
+      "status": "Active"
+    },
+    {
+        "id": 5,
+        "name": "Bruce",
+        "email": "super@example.com",
+        "role": "Viewer",
+        "status": "Active"
+    },
+    {
+        "id": 6,
+        "name": "naruto",
+        "email": "bob@example.com",
+        "role": "Editor",
+        "status": "Inactive"
+    },
+    {
+        "id": 7,
+        "name": "Bruce Lee",
+        "email": "super@example.com",
+        "role": "Viewer",
+        "status": "Active"
+    },
+    {
+        "id": 8,
+        "name": "Bharath varma",
+        "email": "varma@example.com",
+        "role": "Admin",
+        "status": "Active"
+    }, 
+    {
+          "id": 9,
+          "name": "Bruce",
+          "email": "super@example.com",
+          "role": "Viewer",
+          "status": "Active"
+    },
+    {
+        "id": 10,
+        "name": "Sasuke Uchiha",
+        "email": "sasuke@leaf.com",
+        "role": "Editor",
+        "status": "Inactive"
+    },
+    {
+        "id": 11,
+        "name": "Sakura Haruno",
+        "email": "sakura@leaf.com",
+        "role": "Viewer",
+        "status": "Active"
+    },
+    {
+        "id": 12,
+        "name": "Kakashi Hatake",
+        "email": "kakashi@leaf.com",
+        "role": "Admin",
+        "status": "Active"
+    },
+    {
+        "id": 13,
+        "name": "Itachi Uchiha",
+        "email": "itachi@akatsuki.com",
+        "role": "Editor",
+        "status": "Inactive"
+    },
+    {
+        "id": 14,
+        "name": "Hinata Hyuga",
+        "email": "hinata@leaf.com",
+        "role": "Viewer",
+        "status": "Active"
+    },
+    {
+        "id": 15,
+        "name": "Shikamaru Nara",
+        "email": "shikamaru@leaf.com",
+        "role": "Editor",
+        "status": "Active"
+    },
+    {
+        "id": 16,
+        "name": "Gaara Sabaku",
+        "email": "gaara@sand.com",
+        "role": "Viewer",
+        "status": "Active"
+    },
+    {
+        "id": 17,
+        "name": "Jiraiya",
+        "email": "jiraiya@legend.com",
+        "role": "Admin",
+        "status": "Inactive"
+    },
+    {
+        "id": 18,
+        "name": "Tsunade Senju",
+        "email": "tsunade@leaf.com",
+        "role": "Admin",
+        "status": "Active"
+    },
+    {
+        "id": 19,
+        "name": "Rock Lee",
+        "email": "lee@leaf.com",
+        "role": "Viewer",
+        "status": "Active"
+    },
+    {
+        "id": 20,
+        "name": "Neji Hyuga",
+        "email": "neji@leaf.com",
+        "role": "Editor",
+        "status": "Inactive"
+    },
+    {
+        "id": 21,
+        "name": "Temari",
+        "email": "temari@sand.com",
+        "role": "Viewer",
+        "status": "Active"
+    },
+    {
+        "id": 22,
+        "name": "Kiba Inuzuka",
+        "email": "kiba@leaf.com",
+        "role": "Viewer",
+        "status": "Active"
+    },
+    {
+        "id": 23,
+        "name": "Choji Akimichi",
+        "email": "choji@leaf.com",
+        "role": "Editor",
+        "status": "Inactive"
+    }
+  ]
+  
